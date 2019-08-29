@@ -1,0 +1,14 @@
+{
+  "name": "Datepicker with overrides",
+  "version": "0.0.0",
+  "description": "A simple example deployed using react-codesandboxer",
+  "main": "index.js",
+  "dependencies": {
+    "baseui": "8.16.5",
+    "react": "16.8.6",
+    "react-dom": "16.8.6",
+    "react-scripts": "3.0.1",
+    "styletron-engine-atomic": "1.4.0",
+    "styletron-react": "5.2.0"
+  }
+}
