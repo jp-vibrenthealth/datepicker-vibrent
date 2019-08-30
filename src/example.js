@@ -11,16 +11,30 @@ export default () => (
   <StatefulCalendar
     initialState={{ value: new Date() }}
     overrides={{
+      CalendarContainer: {
+        style: ({ $theme }) => ({
+          width: "350px",
+          fontSize: "14px"
+        })
+      },
       CalendarHeader: {
         style: ({ $theme }) => ({
           backgroundColor: $theme.colors.mono100
         })
       },
+      MonthContainer: {
+        style: () => ({
+          borderTop: "1px solid #e1e1e1",
+          borderLeft: "1px solid #e1e1e1",
+          boxShadow: "1.2px 2.7px 2px 0 rgba(0, 0, 0, 0.1)"
+        })
+      },
       MonthHeader: {
         style: ({ $theme }) => ({
-          backgroundColor: $theme.colors.mono100,
-          color: $theme.colors.mono700,
-          borderTop: `1px ${$theme.colors.mono500} solid`
+          backgroundColor: "white",
+          color: "#666666",
+          borderTop: "1px solid #e1e1e1",
+          fontSize: "12px"
         })
       },
       MonthYearSelectButton: {
@@ -49,10 +63,18 @@ export default () => (
           backgroundColor: $selected
             ? "#0098db"
             : $isHighlighted
-            ? $theme.colors.primary
+            ? $theme.colors.mono400
             : "transparent",
           color: $selected ? "white" : $theme.colors.mono900,
-          borderRadius: "50%"
+          borderRadius: "50%",
+          ":first-child": {
+            borderTopLeftRadius: "50%",
+            borderBottomLeftRadius: "50%"
+          },
+          ":last-child": {
+            borderTopRightRadius: "50%",
+            borderBottomRightRadius: "50%"
+          }
         })
       }
     }}
