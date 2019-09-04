@@ -30,7 +30,7 @@ export default () => (
         })
       },
       MonthHeader: {
-        style: ({ $theme }) => ({
+        style: () => ({
           backgroundColor: "white",
           color: "#666666",
           borderTop: "1px solid #e1e1e1",
@@ -38,12 +38,13 @@ export default () => (
         })
       },
       MonthYearSelectButton: {
+        disabled: true,
         style: ({ $theme }) => ({
           color: $theme.colors.mono900
         })
       },
       MonthYearSelectIconContainer: {
-        style: ({ $theme }) => ({
+        style: () => ({
           display: "none"
         })
       },
@@ -59,6 +60,10 @@ export default () => (
         })
       },
       Day: {
+        minDate: ({ $date }) =>
+          new Date($date.getFullYear(), $date.getMonth(), 1),
+        maxDate: ({ $date }) =>
+          new Date($date.getFullYear(), $date.getMonth(), 60),
         style: ({ $theme, $selected, $isHighlighted }) => ({
           backgroundColor: $selected
             ? "#0098db"
@@ -66,7 +71,10 @@ export default () => (
             ? $theme.colors.mono400
             : "transparent",
           color: $selected ? "white" : $theme.colors.mono900,
-          borderRadius: "50%",
+          borderTopLeftRadius: "50%",
+          borderBottomLeftRadius: "50%",
+          borderTopRightRadius: "50%",
+          borderBottomRightRadius: "50%",
           ":first-child": {
             borderTopLeftRadius: "50%",
             borderBottomLeftRadius: "50%"
