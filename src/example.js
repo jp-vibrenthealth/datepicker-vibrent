@@ -1,15 +1,18 @@
 import * as React from "react";
 import { StatefulCalendar } from "baseui/datepicker";
+// import SmartDay from '../SmartDay';
 
 const arrowBtnOverrides = ({ $theme }) => {
   return {
     color: $theme.colors.mono900
   };
 };
+// const appointmentDates = [];
 
 export default () => (
   <StatefulCalendar
     initialState={{ value: new Date() }}
+    onDayClick={() => console.log("onDayClick event fired.")}
     overrides={{
       CalendarContainer: {
         style: ({ $theme }) => ({
@@ -38,7 +41,6 @@ export default () => (
         })
       },
       MonthYearSelectButton: {
-        disabled: true,
         style: ({ $theme }) => ({
           color: $theme.colors.mono900
         })
@@ -60,10 +62,12 @@ export default () => (
         })
       },
       Day: {
-        minDate: ({ $date }) =>
-          new Date($date.getFullYear(), $date.getMonth(), 1),
-        maxDate: ({ $date }) =>
-          new Date($date.getFullYear(), $date.getMonth(), 60),
+        onClick: $date => {
+          console.log($date);
+        },
+        props: props => ({
+          "day-has-appointments": props.$isHighlighted ? "yes" : "no"
+        }),
         style: ({ $theme, $selected, $isHighlighted }) => ({
           backgroundColor: $selected
             ? "#0098db"
